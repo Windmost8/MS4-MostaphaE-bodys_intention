@@ -71,6 +71,16 @@ body {
     border: 1px solid black !important;
 }
 
+.overlay {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	position: fixed;
+	background: white;
+	z-index: -1;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -91,7 +101,17 @@ body {
     }
 
     .header-container {
-        padding-top: 164px;
+        /*used to be 164px, changed to 100 for test, 
+        perhaps create new media query since in mobile the prodcuts, abouts us
+        and contact menus are covered*/
+        padding-top: 100px;
     }
 }
 /*..............................................................Code inst css end*/
+
+/*in order to fix background image face showing*/
+@media (min-width: 993px) {
+    .hideElement {
+        display: none;
+    }
+}
