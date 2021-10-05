@@ -107,6 +107,17 @@ body {
         padding-top: 100px;
     }
 }
+
+/* pad the top a bit when navbar is collapsed on mobile */
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 116px;
+    }
+
+    body {
+        height: calc(100vh - 116px);
+    }
+}
 /*..............................................................Code inst css end*/
 
 /*in order to fix background image face showing*/
