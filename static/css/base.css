@@ -28,6 +28,20 @@
     background: #000 !important;
 }
 
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+
+.btt-link,
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
 /*..............................................................Code inst css start*/
 html {
     height: 100%;
@@ -101,10 +115,7 @@ body {
     }
 
     .header-container {
-        /*used to be 164px, changed to 100 for test, 
-        perhaps create new media query since in mobile the prodcuts, abouts us
-        and contact menus are covered*/
-        padding-top: 100px;
+        padding-top: 164px;
     }
 }
 
@@ -120,9 +131,3 @@ body {
 }
 /*..............................................................Code inst css end*/
 
-/*in order to fix background image face showing*/
-@media (min-width: 993px) {
-    .hideElement {
-        display: none;
-    }
-}
