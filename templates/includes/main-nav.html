@@ -5,10 +5,10 @@
                 Products <i class="fas fa-caret-down"></i>
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="" class="dropdown-item">By Price</a>
-                <a href="" class="dropdown-item ">By Rating</a>
-                <a href="" class="dropdown-item ">By Category</a>
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
+                <a href="{% url 'products' %}?category=equipment" class="dropdown-item">Equipment</a>
+                <a href="{% url 'products' %}?category=clothing" class="dropdown-item ">Clothing</a>
+                <a href="{% url 'products' %}?category=nutrition" class="dropdown-item ">Nutrition</a>
             </div>
         </li>
 
