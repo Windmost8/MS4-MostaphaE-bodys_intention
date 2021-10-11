@@ -1,1 +1,1 @@
-web: gunicorn bodys_intention.wsgi:application
+web: gunicorn bodys_intention.wsgi:application_v1
