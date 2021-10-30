@@ -76,7 +76,7 @@ def edit_comment(request, comment_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated comment!')
-            return redirect(reverse('my_comments'))
+            return redirect(reverse('profile'))
         else:
             messages.error(request, 'Failed to update comment. Please ensure the form is valid.')
     else:

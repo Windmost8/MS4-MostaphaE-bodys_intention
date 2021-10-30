@@ -38,7 +38,12 @@
                         <br><br>
                         Then we got you <a href="{% url 'products' %}">covered!</a>
                         <br><br>
-                        Otherwise just browse around and take your time. It may be of your interest to <a href="{% url 'account_signup' %}">sign up</a> with us...
+                        Otherwise just browse around and take your time. It may be of your interest to 
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'profile' %}">sign up</a> with us...
+                        {% else  %}
+                            <a href="{% url 'account_signup' %}">sign up</a> with us...
+                        {% endif %}
                         <br>
                         <i>(Becoming a member would include being able to <b>comment on items</b> and have access to your own <b>profile and summaries!</b>)</i>
                         <br><br>
@@ -46,7 +51,6 @@
                         <br><br>
                         Wish you to socially connect with us? Then look no further than right below here for our social media links and information.
                     </p>
-                    <hr>
                 </div>
             </div>
         </div>

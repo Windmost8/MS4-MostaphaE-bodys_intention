@@ -21,14 +21,14 @@
                 <h2 class="logo-font mb-4">Your Comments</h2>
                 <h5 class="text-muted"><b><i>{{request.user.username}}</i></b></h5>
                 <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Profile</a>
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'my_comments' %}">My Comments</a>
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'my_contacts' %}">My Contacts</a>
+                    <a class="btn btn-outline-black rounded-0 mediaSizeProfile" href="{% url 'profile' %}">Profile</a>
+                    <a class="btn btn-outline-black rounded-0 mediaSizeProfile" href="{% url 'my_comments' %}">My Comments</a>
+                    <a class="btn btn-outline-black rounded-0 mediaSizeProfile" href="{% url 'my_contacts' %}">My Contacts</a>
                 </div>
                 <hr>
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-center">
             <div class="col-12 col-lg-6">
                 <p class="text-muted">Comment History</p>
                 <div class="order-history table-responsive">
@@ -49,7 +49,7 @@
                                     <td>{{ comment.posted_at }}</td>
                                     <td>
                                         <ul class="list-unstyled">
-                                            {{ comment.body }}
+                                            {{ comment.body|truncatechars:6 }}
                                         </ul>
                                     </td>
                                     <td>

@@ -21,9 +21,9 @@
                 <h2 class="logo-font mb-4">Your Profile</h2>
                 <h5 class="text-muted">Welcome Back <b><i>{{request.user.username}}</i></b></h5>
                 <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Profile</a>
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'my_comments' %}">My Comments</a>
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'my_contacts' %}">My Contacts</a>
+                    <a class="btn btn-outline-black rounded-0 mediaSizeProfile" href="{% url 'profile' %}">Profile</a>
+                    <a class="btn btn-outline-black rounded-0 mediaSizeProfile" href="{% url 'my_comments' %}">My Comments</a>
+                    <a class="btn btn-outline-black rounded-0 mediaSizeProfile" href="{% url 'my_contacts' %}">My Contacts</a>
                 </div>
                 <hr>
             </div>
@@ -79,6 +79,7 @@
                 </div>
             </div>
         </div>
+    </div>
 {% endblock %}
 
 {% block postloadjs %}
