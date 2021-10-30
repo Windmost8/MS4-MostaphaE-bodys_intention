@@ -54,23 +54,12 @@ def order_history(request, order_number):
 
 @login_required
 def my_comments(request):
-    """ Display the user's profile. """
+    """ Display the user's comments. """
     profile = get_object_or_404(UserProfile, user=request.user)
-
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully')
-        else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
-    else:
-        form = UserProfileForm(instance=profile)
     comments = Comment.objects.filter(person__in=[profile])
 
     template = 'profiles/my_comments.html'
     context = {
-        'form': form,
         'comments': comments,
         'on_profile_page': True
     }
@@ -80,11 +69,7 @@ def my_comments(request):
 
 @login_required
 def edit_comment(request, comment_id):
-    """ Edit a comment in the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('profile'))
-
+    """ Edit a comment """
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=comment)
@@ -109,11 +94,7 @@ def edit_comment(request, comment_id):
 
 @login_required
 def delete_comment(request, comment_id):
-    """ Delete a comment from the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
-
+    """ Delete a comment """
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
     messages.success(request, 'Comment deleted!')
@@ -122,7 +103,7 @@ def delete_comment(request, comment_id):
 
 @login_required
 def my_contacts(request):
-    """ Display the user's profile. """
+    """ Display the users inquiries. """
     profile = get_object_or_404(UserProfile, user=request.user)
     contacts = Contact.objects.filter(person__in=[profile])
 
@@ -137,11 +118,7 @@ def my_contacts(request):
 
 @login_required
 def delete_contact(request, contact_id):
-    """ Delete a comment from the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
-
+    """ Delete a inquiry from the store """
     contact = get_object_or_404(Contact, pk=contact_id)
     contact.delete()
     messages.success(request, 'Inquiry deleted from history!')
@@ -150,11 +127,7 @@ def delete_contact(request, contact_id):
 
 @login_required
 def edit_contact(request, contact_id):
-    """ Edit a comment in the store """
-    if not request.user.is_superuser:
-        messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('profile'))
-
+    """ Edit an inquiry in the store """
     contact = get_object_or_404(Contact, pk=contact_id)
     if request.method == 'POST':
         form = ContactForm(request.POST, instance=contact)

@@ -50,21 +50,6 @@
                     {% endif %}
                     <p class="mt-3">{{ product.description }}</p>
 
-                    <!--
-                    {% if request.user.is_authenticated %}
-                        <div id="favorite-section">
-                        {% if is_favorite %}
-                            <a href="#"
-                                <i class="fas fa-heart"></i>
-                            </a>
-                        {% else %}
-                            <a href="#"
-                                <i class="far fa-heart"></i>
-                            </a>
-                        {% endif %}
-                        </div>
-                    {% endif %}-->
-
                      <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                         {% csrf_token %}
                         <div class="form-row">
@@ -124,11 +109,11 @@
                     </form>
                 </div>
 
-                <h2>Reviews...</h2>
+                <h2>Comments...</h2>
                 <hr>
                 {% if not product.comments.all%}
-                    <p>No Reviews Yet.</p>
-                    <a href="{% url 'add_comment' product.id %}">Add a review<a>
+                    <p>No Comments Yet.</p>
+                    <a href="{% url 'add_comment' product.id %}">Add a Comment<a>
                 {% else %}
                     {% for comment in product.comments.all %}
                     <strong>
@@ -146,9 +131,9 @@
                     <br>
                     <hr>
                     {% endfor %}
-                    <a href="{% url 'add_comment' product.id %}">Add a review<a>
+                    <a href="{% url 'add_comment' product.id %}">Add a Comment<a>
                 {% endif %}
-
+                
             </div>
         </div>
     </div>

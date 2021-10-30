@@ -18,7 +18,6 @@
     <div class="container">
         <div class="row">
             <div class="col text-center mt-3">
-                <hr>
                 <h2 class="logo-font mb-4">Your Inquiries</h2>
                 <h5 class="text-muted"><b><i>{{request.user.username}}</i></b></h5>
                 <div class="text-right">
@@ -39,7 +38,7 @@
                             <tr>
                                 <th>User</th>
                                 <th>Date</th>
-                                <th>Text</th>
+                                <th>Inquiry</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +54,7 @@
                                         </ul>
                                     </td>
                                     <td>
-                                        {% if request.user.is_superuser %}
+                                        {% if request.user.is_authenticated %}
                                             <small class="ml-3">
                                                 <a href="{% url 'edit_contact' contact.id %}">Edit</a> | 
                                                 <a class="text-danger" href="{% url 'delete_contact' contact.id %}">Delete</a>

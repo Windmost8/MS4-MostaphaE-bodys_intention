@@ -14,7 +14,6 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center mt-3">
-                    <hr>
                     <h2 class="logo-font mb-4">Contact</h2>
                     <h5 class="text-muted">Ask us anything!</h5>
                     <hr>
@@ -25,23 +24,18 @@
                 <div class="col-12 col-md-6">
                     <form method="POST" class="form mb-2">
                     {% csrf_token %}
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="inquiry">Inquiry</label>
-                            <textarea class="form-control" id="inquiry" name="inquiry" rows="3" placeholder="Enter Inquiry"></textarea>
-                        </div>
+                        {% csrf_token %}
+                     {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
                         <div class="text-right">
                             <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
                             <button class="btn btn-black rounded-0" type="submit">Submit Inquiry</button>
-                            <small id="contactHelp" class="form-text text-muted">You cannot reverse an inquiry!</small>
+                            <small id="contactHelp" class="form-text text-muted">We will never share your email with anyone!</small>
                         </div>
                     </form>
                 </div>            

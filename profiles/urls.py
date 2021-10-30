@@ -10,6 +10,4 @@ urlpatterns = [
     path('my_contacts', views.my_contacts, name='my_contacts'),
     path('delete/<int:contact_id>/', views.delete_contact, name='delete_contact'),
     path('edit/<int:contact_id>/', views.edit_contact, name='edit_contact'),
-    #path('fav/<int:id>/', views.favorite_add, name='favorite_add'),
-    #path('profile/favorites/', views.favorite_list, name='favorite_list'),
 ]

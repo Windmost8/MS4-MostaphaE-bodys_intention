@@ -1,4 +1,12 @@
 /*..........................................*/
+/* footer social media css start */
+
+footer{
+    margin-bottom:0px !important;
+}
+
+/* footer social media css  end*/
+
 .h-inline {
     display: inline;
 }
@@ -43,6 +51,7 @@
 }
 
 /*..............................................................Code inst css start*/
+
 html {
     height: 100%;
 }

@@ -25,11 +25,8 @@ class Product(models.Model):
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
-    # check this reviews part again
-    review = models.TextField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-    # favorites = models.ManyToManyField(User, related_name='favorite', default=None, blank=True)
 
     def __str__(self):
         return self.name
@@ -38,9 +35,7 @@ class Product(models.Model):
 class Comment(models.Model):
     person = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, related_name="comments", on_delete=models.CASCADE, null=True)
-    #name = models.CharField(max_length=254, default="anon")
     body = models.TextField(max_length=250, null=True)
-    #stars = models.IntegerField(default=0)
     posted_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

@@ -7,7 +7,7 @@ from django.db.models.functions import Lower
 from django.views.generic.edit import CreateView
 
 from .models import Product, Category, Comment, Contact, UserProfile
-from .forms import ProductForm, CommentForm
+from .forms import ProductForm, CommentForm, ContactForm
 
 # Create your views here.
 
@@ -151,6 +151,7 @@ def contact(request):
     if request.user.is_authenticated:
         profile = get_object_or_404(UserProfile, user=request.user)
     if request.method == "POST":
+        form = ContactForm(request.POST)
         name = request.POST.get('name')
         email = request.POST.get('email')
         inquiry = request.POST.get('inquiry')
@@ -158,8 +159,17 @@ def contact(request):
         if profile:
             instance.person = profile
         instance.save()
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully sent inquiry!')
+            return redirect(reverse('products'))
+        else:
+            messages.error(request, 'Failed to send inquiry. Please ensure the form is valid.')
+    else:
+        form = ContactForm()
 
     context = {
+        'form': form,
         'contact': contact,
     }
 
@@ -168,6 +178,7 @@ def contact(request):
 
 @login_required
 def add_comment(request, product_id):
+    """ view to add comment"""
     profile = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=product_id)
 
@@ -192,26 +203,3 @@ def add_comment(request, product_id):
 
     return render(request, template, context)
 
-
-#class AddCommentView(CreateView):
-#    model = Comment
-#    form_class = CommentForm
-#    template_name = "products/add_review.html"
-#    # fields = '__all__'
-#    success_url = reverse_lazy('products')
-
-#    def form_valid(self, form):
-#        form.instance.product_id = self.kwargs['pk']
-#        return super().form_valid(form)
-
-
-#def reviews_stars(request):
-#    """view for reviews"""
-#    if request.method == "GET":
-#        product_id = request.GET.get('product_id')
-#        product = Product.objects.get(id=product_id)
-#        comment = request.GET.get('comment')
-#        stars = request.GET.get('stars')
-#        person = request.user
-#        Reviews(person=person, product=product, comment=comment, stars=stars).save()
-#        return redirect('product_detail', id=product_id)
