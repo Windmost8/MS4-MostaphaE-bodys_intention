@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container fixed-top">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <hr>
+                    <h2 class="logo-font mb-4">Contact</h2>
+                    <h5 class="text-muted">Ask us anything!</h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="row justify-center">
+                <div class="col-12 col-md-6">
+                    <form method="POST" class="form mb-2">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="inquiry">Inquiry</label>
+                            <textarea class="form-control" id="inquiry" name="inquiry" rows="3" placeholder="Enter Inquiry"></textarea>
+                        </div>
+                        <div class="text-right">
+                            <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">Cancel</a>
+                            <button class="btn btn-black rounded-0" type="submit">Submit Inquiry</button>
+                            <small id="contactHelp" class="form-text text-muted">You cannot reverse an inquiry!</small>
+                        </div>
+                    </form>
+                </div>            
+            </div>
+        </div>
+{% endblock %}

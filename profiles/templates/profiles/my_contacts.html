@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center mt-3">
+                <hr>
+                <h2 class="logo-font mb-4">Your Inquiries</h2>
+                <h5 class="text-muted"><b><i>{{request.user.username}}</i></b></h5>
+                <div class="text-right">
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'profile' %}">Profile</a>
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'my_comments' %}">My Comments</a>
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'my_contacts' %}">My Contacts</a>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <p class="text-muted">Contact History</p>
+                <div class="order-history table-responsive">
+                
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Date</th>
+                                <th>Text</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for contact in contacts %}
+                                <tr>
+                                    <td>
+                                    {{ contact.name }}
+                                    </td>
+                                    <td>{{ contact.time }}</td>
+                                    <td>
+                                        <ul class="list-unstyled">
+                                            {{ contact.inquiry }}
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        {% if request.user.is_superuser %}
+                                            <small class="ml-3">
+                                                <a href="{% url 'edit_contact' contact.id %}">Edit</a> | 
+                                                <a class="text-danger" href="{% url 'delete_contact' contact.id %}">Delete</a>
+                                            </small>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}
