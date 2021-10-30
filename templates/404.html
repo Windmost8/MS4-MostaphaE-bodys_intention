@@ -1,1 +1,37 @@
-<h1>hi</hi>
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+     <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <hr>
+                    <h2 class="logo-font mb-4">Uh Oh...</h2>
+                    <h5 class="text-muted">Looks like this page doesn't exist!</h5>
+                    <hr>
+                    <div class="col text-center mt-3">
+                        <div class="text-right">
+                            <a class="btn btn-outline-black rounded-0 mediaSizeProfile" href="{% url 'products' %}">Go Back</a>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}
