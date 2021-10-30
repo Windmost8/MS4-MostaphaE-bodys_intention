@@ -14,7 +14,42 @@
 {% endblock %}
 
 {% block content %}
-    <h1>hello</h1>
+     <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <hr>
+                    <h2 class="logo-font mb-4">About Us</h2>
+                    <h5 class="text-muted">What is the <i>body's intention</i>...?</h5>
+                    <hr>
+                    <p>
+                        <b>Body's Intention</b> is as the name sounds. This site is a resource dedicated to providing you with access 
+                        to products that are all things fitness! We want you to be happy with your body, and be able to 
+                        achieve your goals towards that happniess. Use the search button to try your luck at finding what you want
+                        or just use the <i>Products</i> dropdown menu.
+                        <br><br>
+                        Be it fitness <a href="{% url 'products' %}?category=equipment">equipment</a>
+                        <br><br>
+                        Fitness <a href="{% url 'products' %}?category=clothing">clothing?</a>
+                        <br><br>
+                        Maybe <a href="{% url 'products' %}?category=nutrition">nutritional</a> items
+                        <br><br>
+                        Or just plain out fitness related <a href="{% url 'products' %}?category=other">things</a>
+                        <br><br>
+                        Then we got you <a href="{% url 'products' %}">covered!</a>
+                        <br><br>
+                        Otherwise just browse around and take your time. It may be of your interest to <a href="{% url 'account_signup' %}">sign up</a> with us...
+                        <br>
+                        <i>(Becoming a member would include being able to <b>favorite items</b> and have access to your own <b>profile and summaries!</b>)</i>
+                        <br><br>
+                        You can also just flat out ask us anything you want related to our products and website. We'd love to <a href="{% url 'contact' %}">hear from you!</a>
+                        <br><br>
+                        Wish you to socially connect with us? Then look no further than right below here for our social media links and information.
+                    </p>
+                    <hr>
+                </div>
+            </div>
+        </div>
 {% endblock %}
 
 {% block postloadjs %}

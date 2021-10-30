@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.views.generic.edit import CreateView
 
-from .models import Product, Category
-from .forms import ProductForm
+from .models import Product, Category, Comment, Contact, UserProfile
+from .forms import ProductForm, CommentForm
 
 # Create your views here.
 
@@ -63,9 +65,13 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
+    #is_favorite = False
+    #if product.favorite.filter(id=request.user.id).exists():
+    #    is_favorite = True
 
     context = {
         'product': product,
+    #    'is_favorite': is_favorite,
     }
 
     return render(request, 'products/product_detail.html', context)
@@ -137,3 +143,75 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+def contact(request):
+    """ view for contact us page"""
+    profile = None
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == "POST":
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        inquiry = request.POST.get('inquiry')
+        instance = Contact(name=name, email=email, inquiry=inquiry)
+        if profile:
+            instance.person = profile
+        instance.save()
+
+    context = {
+        'contact': contact,
+    }
+
+    return render(request, 'products/contact.html', context)
+
+
+@login_required
+def add_comment(request, product_id):
+    profile = get_object_or_404(UserProfile, user=request.user)
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save()
+            comment.person = profile
+            comment.product = product
+            comment.save()
+            messages.success(request, 'Successfully added comment!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to add comment. Please try again.')
+    else:
+        form = CommentForm()
+        
+    template = 'products/add_comment.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+#class AddCommentView(CreateView):
+#    model = Comment
+#    form_class = CommentForm
+#    template_name = "products/add_review.html"
+#    # fields = '__all__'
+#    success_url = reverse_lazy('products')
+
+#    def form_valid(self, form):
+#        form.instance.product_id = self.kwargs['pk']
+#        return super().form_valid(form)
+
+
+#def reviews_stars(request):
+#    """view for reviews"""
+#    if request.method == "GET":
+#        product_id = request.GET.get('product_id')
+#        product = Product.objects.get(id=product_id)
+#        comment = request.GET.get('comment')
+#        stars = request.GET.get('stars')
+#        person = request.user
+#        Reviews(person=person, product=product, comment=comment, stars=stars).save()
+#        return redirect('product_detail', id=product_id)
