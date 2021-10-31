@@ -171,4 +171,4 @@ Code institute is to be credited with providing help in implementing payment (an
 Background image was found here;
 https://www.freepik.com/free-photos-vectors/fitness-background
 
-Product images were found here;
+Product images were found here (free stock photos); https://www.pexels.com/
