@@ -97,7 +97,7 @@ All screenshots relevant to the features can be found in the screenshots folder 
 ---
 ### **Validator Testing**
 
-* HTML (https://validator.w3.org/) (through URI)
+* HTML (https://validator.w3.org/) (through URI) (only 2 "warnings" that were both "The type attribute is unnecessary for JavaScript resources." Could not find.)
 
 * CSS (https://jigsaw.w3.org/css-validator/)
 
