@@ -1,3 +1,4 @@
+"""apps py for bag app"""
 from django.apps import AppConfig
 
 

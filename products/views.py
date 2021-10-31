@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
-from django.views.generic.edit import CreateView
 
 from .models import Product, Category, Comment, Contact, UserProfile
 from .forms import ProductForm, CommentForm, ContactForm
@@ -65,13 +63,9 @@ def product_detail(request, product_id):
     """ A view to show individual product details """
 
     product = get_object_or_404(Product, pk=product_id)
-    #is_favorite = False
-    #if product.favorite.filter(id=request.user.id).exists():
-    #    is_favorite = True
 
     context = {
         'product': product,
-    #    'is_favorite': is_favorite,
     }
 
     return render(request, 'products/product_detail.html', context)

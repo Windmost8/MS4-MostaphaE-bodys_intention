@@ -4,7 +4,7 @@ from profiles.models import UserProfile
 
 
 class Category(models.Model):
-
+    """models for category in product app, just names"""
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -19,6 +19,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """relevant fields for product models in product app"""
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=254)
     description = models.TextField()
@@ -33,6 +34,7 @@ class Product(models.Model):
 
 
 class Comment(models.Model):
+    """relevant fields for comment models in product app"""
     person = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     product = models.ForeignKey(Product, related_name="comments", on_delete=models.CASCADE, null=True)
     body = models.TextField(max_length=250, null=True)
@@ -43,6 +45,7 @@ class Comment(models.Model):
 
 
 class Contact(models.Model):
+    """relevant fields for contact models in product app"""
     email = models.CharField(max_length=254, null=True)
     person = models.ForeignKey(UserProfile, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=40, default="anon", null=True)

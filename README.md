@@ -97,7 +97,7 @@ All screenshots relevant to the features can be found in the screenshots folder 
 ---
 ### **Validator Testing**
 
-* HTML (https://validator.w3.org/)
+* HTML (https://validator.w3.org/) (through URI)
 
 * CSS (https://jigsaw.w3.org/css-validator/)
 
@@ -109,6 +109,7 @@ All screenshots relevant to the features can be found in the screenshots folder 
 
 ### **Unfixed Bugs**
 At times the account button navigation menu bugs out and you are unable to select an option unless you refresh.
+There are also some pylint errors and other errors that remained, which came with django, and others that doesn't affect the projects functionality
 
 ### **Test Cases**
 * Typing in a false url should reusult in an error page.

@@ -1,3 +1,4 @@
+"""apps py for about app"""
 from django.apps import AppConfig
 
 

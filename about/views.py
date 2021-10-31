@@ -1,3 +1,4 @@
+"""views for about app"""
 from django.shortcuts import render
 
 
